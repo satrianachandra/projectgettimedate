@@ -1,6 +1,0 @@
-#!/bin/sh
-read continentcity
-set $continentcity
-export LANG
-export TZ="$1"/"$2"
-date

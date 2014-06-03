@@ -1,9 +1,0 @@
-#!/bin/sh
-zenity --entry --entry-text="type" --text "Insert Continent(Space)City" > /tmp/tmp1
-#dialog --title "test" --inputbox "Insert City" 100 100 2>/tmp/city
-
-input=`cat /tmp/tmp1`
-stringarray=($input)
-
-export TZ="${stringarray[0]}"/"${stringarray[1]}"
-dialog --title "" --infobox "Current date and time is:\n`date`" 100 100
