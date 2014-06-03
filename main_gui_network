@@ -9,8 +9,21 @@ ERROR=/tmp/main-err
 
 
 MAIN="nc $HOST $PORT"
-zenity --entry --entry-text="type" --text "Insert Continent(Space)City" > $FILE1 || end
 
+lang=$(zenity --entry --entry-text="Enter 1 for English ; 2 for Indonesian" --text="Enter preffered language")
+if [ $lang -eq 1 ]
+then
+{
+export LANG=en_US
+zenity --entry --entry-text="type" --text "Insert Continent(Space)City" > $FILE1 || end
+}
+elif [ $lang -eq 2 ]
+then
+{
+export LANG=id_ID
+zenity --entry --entry-text="tipe" --text "Masukkan Benua(Spasi)Kota" > $FILE1 || end
+}
+fi
 ###
 if cat $FILE1 | $MAIN > $FILE2 2>$ERROR
 	then
