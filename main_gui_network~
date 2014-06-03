@@ -7,28 +7,72 @@ FILE1=/tmp/main1
 FILE2=/tmp/main2
 ERROR=/tmp/main-err
 
+GETTEXT="gettext -d main_gui_network"
+
+
+help () {
+        echo "Usage: $0 [ host [port] | --help ]"
+}
+
+end () {
+	rm -f $FILE1 $FILE2 $ERROR
+	exit
+}
+
+if [ $# -eq 1 ]
+then
+        if [ "$1" = "--help" ]
+        then
+                help
+                exit -1
+        else
+                HOST=$1
+        fi
+elif [ $# -eq 2 ]
+then
+        PORT=$2
+elif [ $# -ge 3 ]
+then
+	help
+	exit -1
+fi
+
 
 MAIN="nc $HOST $PORT"
 
-lang=$(zenity --entry --entry-text="Enter 1 for English ; 2 for Indonesian" --text="Enter preffered language")
+while true
+do
+
+lang=$(zenity --entry --title "Enter preffered language" --entry-text="" --text="Enter 1 for English ; 2 for Indonesian")
+if [ $lang ]
+then
+
 if [ $lang -eq 1 ]
 then
 {
-LANG=en_US
-zenity --entry --entry-text="type" --text "Insert Continent(Space)City" > $FILE1 || end
+#export LANG=en_US
+zenity --entry --entry-text="type" --text "`$GETTEXT \"Insert Continent(Space)City:\"`" > $FILE1 || end
 }
 elif [ $lang -eq 2 ]
 then
 {
-LANG=id_ID
+#export LANG=id_ID
 zenity --entry --entry-text="tipe" --text "Masukkan Benua(Spasi)Kota" > $FILE1 || end
 }
 fi
-###
+
+else
+exit -1
+fi
+
 if cat $FILE1 | $MAIN > $FILE2 2>$ERROR
 	then
-		zenity --info --text "`cat $FILE2`"
-	#else
-	#	zenity --info --text "Error"
+		zenity --info --title "`$GETTEXT \"Current Time and Date:\"`" --text "`cat $FILE2`"
+		zenity --question --title "" --text "`$GETTEXT \"Continue?\"`" || end
+		
+	else
+		zenity --info --title "Alert" --text "`$GETTEXT \"Error: Service not running ??\"`"
+		exit -1
 	fi
-###
+
+done

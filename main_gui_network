@@ -7,6 +7,9 @@ FILE1=/tmp/main1
 FILE2=/tmp/main2
 ERROR=/tmp/main-err
 
+GETTEXT="gettext -d main_gui_network"
+
+
 help () {
         echo "Usage: $0 [ host [port] | --help ]"
 }
@@ -40,35 +43,16 @@ MAIN="nc $HOST $PORT"
 while true
 do
 
-lang=$(zenity --entry --title "Enter preffered language" --entry-text="" --text="Enter 1 for English ; 2 for Indonesian")
-if [ $lang ]
-then
+zenity --entry --entry-text="type" --text "`$GETTEXT \"Insert Continent(Space)City:\"`" > $FILE1 || end
 
-if [ $lang -eq 1 ]
-then
-{
-export LANG=en_US
-zenity --entry --entry-text="type" --text "Insert Continent(Space)City" > $FILE1 || end
-}
-elif [ $lang -eq 2 ]
-then
-{
-export LANG=id_ID
-zenity --entry --entry-text="tipe" --text "Masukkan Benua(Spasi)Kota" > $FILE1 || end
-}
-fi
-
-else
-exit -1
-fi
 
 if cat $FILE1 | $MAIN > $FILE2 2>$ERROR
 	then
-		zenity --info --title "Current Time and Date" --text "`cat $FILE2`"
-		zenity --question --title "" --text "Continue?" || end
+		zenity --info --title "`$GETTEXT \"Current Time and Date:\"`" --text "`cat $FILE2`"
+		zenity --question --title "" --text "`$GETTEXT \"Continue?\"`" || end
 		
 	else
-		zenity --info --title "Alert" --text "Error: Service not running ??"
+		zenity --info --title "Alert" --text "`$GETTEXT \"Error: Service not running ??\"`"
 		exit -1
 	fi
 

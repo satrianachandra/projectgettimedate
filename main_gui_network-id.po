@@ -1,0 +1,33 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2012 Oleg Sadov
+# This file is distributed under the same license as the CALC package.
+# Chandra Satriana <satrianachandra@gmail.com>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-03 02:30+0400\n"
+"PO-Revision-Date: 2014-06-03 02:30+0400\n"
+"Last-Translator: Chandra Satriana <satrianachandra@gmail.com>\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: main_gui_network:46
+msgid "Insert Continent(Space)City:"
+msgstr "Masukkan Benua(Spasi)Kota"
+
+#: main_gui_network:51
+msgid "Current Time and Date:"
+msgstr "Waktu dan Tanggal saat ini:"
+
+#: main_gui_network:52
+msgid "Continue?"
+msgstr "Lagi?"
+
+#: main_gui_network:55
+msgid "Error:"
+msgstr "Eror: Servis tidak jalan ??"
