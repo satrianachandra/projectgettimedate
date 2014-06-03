@@ -6,4 +6,4 @@ input=`cat /tmp/tmp1`
 stringarray=($input)
 
 export TZ="${stringarray[0]}"/"${stringarray[1]}"
-zenity --info --text "Current date and time is:\n`date`"
+dialog --title "" --infobox "Current date and time is:\n`date`" 100 100

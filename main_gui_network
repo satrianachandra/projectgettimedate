@@ -1,0 +1,21 @@
+#!/bin/sh
+
+HOST=localhost
+PORT=4321
+
+FILE1=/tmp/main1
+FILE2=/tmp/main2
+ERROR=/tmp/main-err
+
+
+MAIN="nc $HOST $PORT"
+zenity --entry --entry-text="type" --text "Insert Continent(Space)City" > $FILE1 || end
+
+###
+if cat $FILE1 | $MAIN > $FILE2 2>$ERROR
+	then
+		zenity --info --text "`cat $FILE2`"
+	#else
+	#	zenity --info --text "Error"
+	fi
+###

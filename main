@@ -1,3 +1,5 @@
 #!/bin/sh
+read continentcity
+set $continentcity
 export TZ="$1"/"$2"
 date
