@@ -1,0 +1,3 @@
+#!/bin/sh
+export TZ="$1"/"$2"
+date

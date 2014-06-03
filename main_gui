@@ -1,0 +1,9 @@
+#!/bin/sh
+dialog --title "Gettting Current Date and Time based on Time zone" --inputbox "Insert Continent(Space)City" 100 100 2> /tmp/tmp1
+#dialog --title "test" --inputbox "Insert City" 100 100 2>/tmp/city
+
+input=`cat /tmp/tmp1`
+stringarray=($input)
+
+export TZ="${stringarray[0]}"/"${stringarray[1]}"
+dialog --title "" --infobox "Current date and time is:\n`date`" 100 100
