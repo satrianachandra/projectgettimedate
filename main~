@@ -1,7 +1,0 @@
-#!/bin/sh
-read continentcity
-
-city=$(echo $continentcity | cut -f1 -d )
-continent=$(echo $continentcity | cut -f2 -d )
-export TZ="$city"/"$continent"
-date
